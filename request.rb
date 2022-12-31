@@ -1,5 +1,5 @@
 class Request
-  attr_reader :method, :path, :headers, :body
+  attr_reader :method, :path, :headers, :body, :query
 
   def initialize(request)
     lines = request.lines
@@ -10,7 +10,7 @@ class Request
     @headers = parse_headers(lines[1...index])
     @body = lines[(index + 1)..-1].join
 
-    puts "<- #{@method} #{@path}"
+    puts "<- #{@method} #{@path} #{@query}"
   end
 
   def parse_headers(lines)
